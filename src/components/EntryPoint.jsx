@@ -14,11 +14,6 @@ class EntryPoint extends React.Component {
         this.state = {
             inputText: null,
         };
-        this.getText = this.getText.bind(this);
-    }
-
-    getText(value) {
-        this.setState({ inputText: value })
     }
 
     render() {
@@ -26,11 +21,11 @@ class EntryPoint extends React.Component {
             <React.Fragment>
                 <Header />
                 <div id='entryPoint' className={cx('entry-point')}>
-                    <RenderButton getText={this.getText} />
+                    <RenderButton />
                     <div className={cx('add-padding')} />
-                    <RenderInput getText={this.getText} textToShow={this.state.inputText} />
+                    <RenderInput />
                     <div className={cx('add-padding')} />
-                    <RenderText textToShow={this.state.inputText}/>
+                    <RenderText />
                 </div>
             </React.Fragment>
         );

@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { enterTextAction } from '../actions.js';
 
 const inputRef = React.createRef();
 class RenderInput extends React.Component {
@@ -9,13 +11,13 @@ class RenderInput extends React.Component {
     }
 
     componentDidUpdate() {
-        if(this.props.textToShow === '') {
+        if(this.props.inputText === '') {
             inputRef.current.value = '';
         }
     }
 
     handleInput(event) {
-        this.props.getText(event.target.value);
+        this.props.enterText(event.target.value);
     }
 
     render() {
@@ -29,4 +31,17 @@ RenderInput.propTypes = {
     getText: PropTypes.func,
 };
 
-export default RenderInput;
+/* Access the state from the redux store and give them an alias to be used in the component
+*/
+const mapStateToProps = state => ({
+  inputText: state.text,
+});
+
+/* Provides dispatch function in this.props
+*/
+const mapDispatchToProps = dispatch => ({
+  enterText: text => dispatch(enterTextAction(text)),
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(RenderInput);

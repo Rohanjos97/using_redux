@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { buttonPressedAction } from '../actions.js';
 
 class RenderButton extends React.Component {
     constructor(props) {
@@ -8,7 +10,7 @@ class RenderButton extends React.Component {
     }
 
     handleButtonClick(event) {
-        this.props.getText('');
+        this.props.buttonPress();
     }
 
     render() {
@@ -24,4 +26,10 @@ RenderButton.propTypes = {
     getText: PropTypes.func,
 };
 
-export default RenderButton;
+/* Provides dispatch function in this.props
+*/
+const mapDispatchToProps = dispatch => ({
+  buttonPress: () => dispatch(buttonPressedAction())
+});
+
+export default connect(null, mapDispatchToProps)(RenderButton);
