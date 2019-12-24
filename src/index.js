@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from './components/reducers.js';
+import reducer from './reducers.js';
 import EntryPoint from './components/EntryPoint.jsx';
 import * as serviceWorker from './serviceWorker';
 
