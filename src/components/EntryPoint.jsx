@@ -7,6 +7,9 @@ class EntryPoint extends React.Component {
     render() {
         return (
             // Write your code here
+            <div>
+                Hello World!!!
+            </div>
         );
     };
 };
