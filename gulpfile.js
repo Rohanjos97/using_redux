@@ -24,6 +24,8 @@ gulp.task('task4', () => {
     const originalPackage = require('./package.json');
     const dependencies = [];
     const devDependencies = [];
+    const newDependencies = null;
+    const newDevDependencies = null;
     src('./**/babel-jest/package.json')
         // .pipe(concat('./package.json'))
         .pipe(map(function (file) {
@@ -38,15 +40,18 @@ gulp.task('task4', () => {
             }
             console.log(dependencies.length)
             if(dependencies.length !==0) {
-                console.log('inside if')
-                console.log(dependencies)
-                dependencies.map( item => {
-                    console.log('inside loop')
-                })
-                // console.log('before adding new dependencies: ', originalPackage.dependencies)
-                // originalPackage.dependencies = originalPackage.dependencies + obj.dependencies;
-                // console.log('after adding new dependencies: ', originalPackage.dependencies)
+                newDependencies = Object.assign({}, dependencies[0], originalPackage.dependencies)
+                console.log('new dependencies: ', newDependencies);
             }
+            console.log(originalPackage.devDependencies)
+            if(devDependencies.length !==0) {
+                newDevDependencies = Object.assign({}, devDependencies[0], originalPackage.devDependencies)
+                console.log('new devDependencies: ', newDevDependencies);
+            }
+        const newPackageFile = Object.assign({}, originalPackage);
+        newPackageFile.dependencies = newDependencies;
+        newPackageFile.devDependencies = newDevDependencies;
+        console.log(newPackageFile);
         }))
         // .pipe(concat('./output/package.json'))
     // .pipe(dest('./output'));
